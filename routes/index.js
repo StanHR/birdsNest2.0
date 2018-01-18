@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res){
-	res.render('dashboard');
+router.get('/',function(req, res){
+	res.redirect('/users/home');
 });
-router.get('/register', ensureAuthenticated, function(req, res){
-	res.render('dashboard');
+router.get('/register',function(req, res){
+	res.redirect('/users/home');
 });
-router.get('/login', ensureAuthenticated, function(req, res){
-	res.render('dashboard');
+router.get('/login',function(req, res){
+	res.redirect('/users/home');
 });
 
 function ensureAuthenticated(req, res, next){

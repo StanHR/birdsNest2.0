@@ -2,13 +2,23 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/home.css">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"> -->
 	<meta name="google-signin-client_id" content="933883680269-pp63v08kkrnl66k4rjcto1sqprg8gc1a.apps.googleusercontent.com">
 
 	<!-- <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script> -->
-
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<title>FloLabs : Home</title>
+	<style type="text/css">
+		#forgot_pass{
+			text-decoration: none;
+			color:white;
+			margin-right: 7%;
+			font-size: 14px;
+			justify-content: center;
+		}
+	</style>
 </head>
 <body>
 
@@ -52,27 +62,38 @@
 					</form>
 				</div>
 					<center><b>OR</b></center>
-				<div class='sm'>
-					<div class="g-signin2" data-onsuccess="onSignIn" data-width="165" style="margin-bottom: 5px"></div>
-						<!-- <img src='images/google.png' id='sm_image'> -->
-					<!-- SignOut and AutoLogoutLink has been added for testing purpose. Will be removed later when SignOut button is added -->
-					<div>
-						<!-- autologoutlink="true" to get a logout button-->
-						<fb:login-button size='large' autologoutlink="true" onlogin="statusCheck()">
-						</fb:login-button>
-
-<!-- 						<div class="fb-login-button" data-width="100" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div> -->
-
+				<div class='sm'>	
+					<div class="fb">
+						<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>&emsp;  Login with Facebook</a>
 					</div>
-					<!--<div>
-							<a href="#" onclick="FB.logout();">Sign Out</a>
-					</div> -->
-					<!-- <div>
-					<a href='signup.html'><img src='images/fb.png' id='sm_image' onclick='fb_login();'></a>
-					</div> -->
+					<div class="google">
+						<a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span>&emsp;Sign in with Google+</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+
+
+
+
+<!--					<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-width="165" style="margin-bottom: 5px"></div> -->
+						<!-- <img src='images/google.png' id='sm_image'> -->
+					<!-- SignOut and AutoLogoutLink has been added for testing purpose. Will be removed later when SignOut button is added -->
+					<!-- <div> -->
+						<!-- autologoutlink="true" to get a logout button-->
+<!-- 						<fb:login-button size='large' autologoutlink="true" onlogin="statusCheck()">
+						</fb:login-button> -->
+
+<!-- 						<div class="fb-login-button" data-width="100" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div> -->
+
+					<!-- </div> -->
+					<!--<div>
+							<a href="#" onclick="FB.logout();">Sign Out</a>
+					</div> -->
+					<!-- <div>
+					<a href='signup.html'><img src='images/fb.png' id='sm_image' onclick='fb_login();'></a>
+					</div> -->
+

@@ -45,12 +45,21 @@ var UserSchema = mongoose.Schema({
 
 var User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.createUser = (newUser, callback)=>{
-	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, (err, hash)=>{
-	        newUser.password = hash;
-	        newUser.save(callback);
-	    });
+module.exports.createUser = (email, newUser, callback)=>{
+	User.findOne({email},(err,user)=>{
+		if(err){
+			callback(err);
+		}
+		if(user){
+			callback(null, false);
+		}else{
+			bcrypt.genSalt(10, function(err, salt) {
+		   		bcrypt.hash(newUser.password, salt, (err, hash)=>{
+		        	newUser.password = hash;
+		        	newUser.save(callback);
+		    	});
+			});
+		}
 	});
 }
 

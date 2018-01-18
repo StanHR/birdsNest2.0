@@ -5,21 +5,31 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
 
+
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.render('index');
+	}
+}
+
 // Register
 router.get('/register', function(req, res){
-	res.render('index');
+	res.redirect('home');
 });
 
 // Login
 router.get('/login', function(req, res){
-	res.render('index');
+	res.redirect('home');
 });
 
-router.get('/home',function(req,res){
-	res.render('index');
+router.get('/home',ensureAuthenticated,(req,res)=>{
+	res.redirect('dashboard');
 })
 
-router.get('/dashboard',(req,res)=>{
+router.get('/dashboard',ensureAuthenticated,(req,res)=>{
 	res.render('dashboard');
 })
 
@@ -47,7 +57,7 @@ router.post('/signup', function(req, res){
 
 	//console.log(newUser);
 
-	User.createUser(newUser, function(err, user){
+	User.createUser(email, newUser, function(err, user){
 		if(err) throw err;
 		console.log(user);
 	});
@@ -61,20 +71,33 @@ passport.use(new LocalStrategy(
    User.getUserByEmail(username, function(err, user){
    	if(err) throw err;
    	if(!user){
+   		console.log("Account Not Found !")
    		return done(null, false, {message: 'Unknown User'});
    	}
-
-   	User.comparePassword(password, user.password, function(err, isMatch){
-   		if(err) throw err;
-   		if(isMatch){
-   			return done(null, user);
-   		} else {
-   			// return done(null, false, {message: 'Invalid password'});
-   			return done(null, false);
-   		}
-   	});
+   	if(user){
+	   	User.comparePassword(password, user.password, function(err, isMatch){
+	   		if(err) throw err;
+	   		if(isMatch){
+	   			console.log("Account Found ! ",user.userid);
+       			user.lastLogin = Date.now();
+       			user.save((err,res)=>{
+       				if(err){
+	       				return done(null, false);
+       				}
+       				if(res){
+       					return done(null, user);
+       				}
+       			})	
+	   		} else {
+	   			console.log("Wrong Password !")
+	   			// return done(null, false, {message: 'Invalid password'});
+	   			return done(null, false);
+	   		}
+	   	});
+   }
    });
   }));
+
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -91,7 +114,6 @@ router.post('/login',
   function(req, res) {
     res.redirect('/home');
   });
-
 
 router.get('/logout', function(req, res){
 	req.logout();
