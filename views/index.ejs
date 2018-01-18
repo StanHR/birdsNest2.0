@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<meta name="google-signin-client_id" content="933883680269-pp63v08kkrnl66k4rjcto1sqprg8gc1a.apps.googleusercontent.com">
+
+	<!-- <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script> -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>FloLabs : Home</title>
+</head>
+<body>
+
+<!-- 	<script type="text/javascript" src="/js/api.js"></script> -->
+
+	<div class="homepage">
+		<div class="heads">
+			<header>
+			<div id="company">
+				<a href='/' style="text-decoration: none; color:white">
+					FLO<b>labs</b>
+				</a>
+			</div>
+			</header>
+
+			<div class="login-form">	
+				<div style="text-align: right">
+					<form  method="POST" action="login" class="login-inputs">
+						<input type="email" name="username" placeholder="Email / Handle" required>
+						<input type="password" name="password" placeholder="Password" required>
+						<input type="submit" name="submit" id="login_submit" name='login_submit' value="Get In" style="width: auto;margin-right:15px">
+					</form>
+					<a id='forgot_pass' href="/">Forgot Password ?</a>
+				</div>
+			</div>
+		</div>
+
+        
+      	</div>
+		<br>
+		<div class="signup" style="margin-top: 40px">
+			<div style="padding: 15px"><center><b>Create an Account, its FREE !</b></center></div>
+				<div class="signup-form" >
+					<form class="signup-inputs"  method="POST" action="signup">
+						<input type="text" name="data_source" value="local" hidden="true">
+						<input type="text" name="fname" placeholder="First Name" required="true">
+						<input type="text" name="lname" placeholder="Last Name" required="true">
+						<input type="email" name="email" placeholder="Email" required="true">
+						<input type="password" name="pwd" placeholder="Password" required="true">
+						<input type="submit" name="submit" id="signup_submit" name='signup_submit' value="EXPLORE">
+					</form>
+				</div>
+					<center><b>OR</b></center>
+				<div class='sm'>
+					<div class="g-signin2" data-onsuccess="onSignIn" data-width="165" style="margin-bottom: 5px"></div>
+						<!-- <img src='images/google.png' id='sm_image'> -->
+					<!-- SignOut and AutoLogoutLink has been added for testing purpose. Will be removed later when SignOut button is added -->
+					<div>
+						<!-- autologoutlink="true" to get a logout button-->
+						<fb:login-button size='large' autologoutlink="true" onlogin="statusCheck()">
+						</fb:login-button>
+
+<!-- 						<div class="fb-login-button" data-width="100" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div> -->
+
+					</div>
+					<!--<div>
+							<a href="#" onclick="FB.logout();">Sign Out</a>
+					</div> -->
+					<!-- <div>
+					<a href='signup.html'><img src='images/fb.png' id='sm_image' onclick='fb_login();'></a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
